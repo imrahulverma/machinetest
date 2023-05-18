@@ -1,27 +1,30 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges,SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.css'],
 })
-export class ChildComponent implements  OnInit {
+export class ChildComponent implements OnChanges {
   constructor(){}
+  
   @Input() emp: any;
   keys!: string[];
   employeeData: any;
   selectedAge!: string;
 
+ 
 
   query!: string;
   ageOptions!: string[];
 
-  ngOnInit(): void {
-    let key = Object.keys(this.emp[0]);
+  ngOnChanges(changes:SimpleChanges): void {
+    this.employeeData=this.emp
+    let key = Object.keys(this.employeeData[0]);
     this.keys = key;
     this.employeeData = this.emp;
 
-    
+
     let ageRange = [];
     let minAge = 0;
 
