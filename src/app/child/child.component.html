@@ -1,0 +1,26 @@
+<div id="head">
+    <span>
+        Sort by salary:
+        <button (click)="ascending()">Ascending</button>
+        <button (click)="descending()">Descending</button>
+        <button (click)="reset()">Reset</button>
+    </span>
+    <input type="text" placeholder="Search Employee Name" [(ngModel)]="query">
+    <span>
+        Filter By Age:
+        <select [(ngModel)]="selectedAge">
+            <option  value=""  >Fiter by age</option>
+            <option *ngFor="let option of ageOptions" [value]="option">{{ option }}</option>
+        </select>
+        <button (click)="ageFilter()">apply</button>
+    </span>
+</div>
+
+<table>
+    <tr>
+        <th *ngFor="let k of keys">{{k}}</th>
+    </tr>
+    <tr *ngFor="let e of employeeData|search:query">
+        <td *ngFor="let k of keys">{{e[k]}}</td>
+    </tr>
+</table>
